@@ -1,4 +1,11 @@
-def cache3(MAX_COUNT):
+def cache3(max_count: int):
+    """Декоратор для кэширования
+
+    Сохраняет результаты функций при тех же параметрах на max_count запусков.
+
+    Args:
+        max_count (int): максимальное кол-во запусков
+    """
     def decorator(func):
         cache = {}
         count = 0
@@ -7,18 +14,18 @@ def cache3(MAX_COUNT):
             nonlocal count
             key = (args, tuple(kwargs.items()))
             count += 1
-            if (key in cache and count < MAX_COUNT):
-                return cache[key]
+            if (key in cache and count < max_count):
+                pass
             else:
                 count = 0
                 cache[key] = func(*args, **kwargs)
-                return cache[key]
+            return cache[key]
         return wrapper
     return decorator
 
 
 if __name__ == '__main__':
-    @cache3(MAX_COUNT=2)
+    @cache3(max_count=3)
     def heavy():
         print('Сложные вычисления')
         return 1
