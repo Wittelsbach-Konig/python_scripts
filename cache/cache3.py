@@ -1,3 +1,6 @@
+import functools
+
+
 def cache3(max_count: int):
     """Декоратор для кэширования
 
@@ -9,7 +12,7 @@ def cache3(max_count: int):
     def decorator(func):
         cache = {}
         count = 0
-
+        @functools.wraps(func)
         def wrapper(*args, **kwargs):
             nonlocal count
             key = (args, tuple(kwargs.items()))
