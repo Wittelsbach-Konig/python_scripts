@@ -1,2 +1,2 @@
-# useful_funcs
-Some useful funcs
+# python scripts
+Some useful python scripts
